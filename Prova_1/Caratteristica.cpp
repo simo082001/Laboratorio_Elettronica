@@ -27,16 +27,16 @@ Double_t retta(Double_t* x, Double_t* par) {
 
 void Caratteristica() {
   // Definisco i grafici
-  TGraphErrors* silicio = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %*lg %*lg");
-  TGraphErrors* germanio = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %*lg %*lg");
-  TGraphErrors* calibrazione = new TGraphErrors("Calibrazione.txt", "%lg %lg %*lg %*lg");
-  TGraphErrors* silicioLog = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %*lg %*lg");
-  TGraphErrors* germanioLog = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %*lg %*lg");
+  TGraphErrors* silicio = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
+  TGraphErrors* germanio = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
+  TGraphErrors* calibrazione = new TGraphErrors("Calibrazione_corretta.txt", "%lg %lg %lg %lg");
+  TGraphErrors* silicioLog = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
+  TGraphErrors* germanioLog = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
 
   // Assegno le funznioni di fit
   TF1* f1 = new TF1("silicio", FitFunction, 350, 760, 2);
-  TF1* f2 = new TF1("germanio", FitFunction, 72, 360, 2);
-  TF1* f3 = new TF1("retta", retta, 1, 0, 2);
+  TF1* f2 = new TF1("germanio", FitFunction, 72, 320, 2);
+  TF1* f3 = new TF1("retta", retta, 0, 800, 2);
 
   // Devo settare i parametri iniziali
   f1->SetParameters(5, 100);
@@ -48,10 +48,20 @@ void Caratteristica() {
   silicio->SetMarkerColor(kBlue);
   silicio->SetMarkerSize(4);
 
+  silicioLog->SetTitle("Curva caratteristica silicio - scala semilogaritmica");
+  silicioLog->SetMarkerStyle(7);
+  silicioLog->SetMarkerColor(kBlue);
+  silicioLog->SetMarkerSize(4);
+
   germanio->SetTitle("Curva caratteristica germanio");
   germanio->SetMarkerStyle(7);
   germanio->SetMarkerColor(kRed);
   germanio->SetMarkerSize(4);
+
+  germanioLog->SetTitle("Curva caratteristica germanio - scala semilogaritmica");
+  germanioLog->SetMarkerStyle(7);
+  germanioLog->SetMarkerColor(kRed);
+  germanioLog->SetMarkerSize(4);
 
   calibrazione->SetTitle("Retta di calibrazione");
   calibrazione->SetMarkerStyle(7);
