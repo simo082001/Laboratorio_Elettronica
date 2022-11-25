@@ -1,5 +1,4 @@
-#include <cmath>
-#include <vector>
+#include<cmath>
 
 void setStyle() {
   gROOT->SetStyle("Plain");
@@ -25,7 +24,7 @@ Double_t retta(Double_t* x, Double_t* par) {
   return val;
 }
 
-void Caratteristica() {
+void Caratteristica1() {
   // Definisco i grafici
   TGraphErrors* silicio = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanio = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
@@ -34,7 +33,7 @@ void Caratteristica() {
   TGraphErrors* silicioLog = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanioLog = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
 
-  // Assegno le funznioni di fit
+  // Assegno le funzioni di fit
   TF1* f1 = new TF1("silicio", FitFunction, 350, 760, 2);
   TF1* f2 = new TF1("germanio", FitFunction, 72, 320, 2);
   TF1* f3 = new TF1("retta", retta, 0, 800, 2);
