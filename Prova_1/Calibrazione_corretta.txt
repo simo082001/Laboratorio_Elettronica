@@ -1,11 +1,11 @@
-Multimetro(mV)    Oscilloscopio(mV)   errori (x e y)  //valutare in quadratura gli errori dell'oscilloscopio
+Multimetro(mV)    Oscilloscopio(mV)   errori (x e y)  //valutare in quadratura gli errori dell'oscilloscopio // Fatto (con 1 cifra significativa)
 
-48.6              50                  0.2      1.5
-117.7             120                 0.4      3.6
-245.2             250                 0.8      7.5
-295.6             300                 1.0      9.0
-389.9             400                 1.3      12
-486.9             500                 1.6      15
-587.0             600                 1.9      18
-686               700                 3        21
-784               800                 3        24
+48.6              50                  0.2      3
+117.7             120                 0.5      5
+245.2             250                 0.8      10
+295.6             300                 1.0      10
+390               400                 1        20
+487               500                 2        20
+587               600                 2        20
+686               700                 3        30
+784               800                 3        30

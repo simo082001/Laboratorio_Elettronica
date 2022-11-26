@@ -1,4 +1,4 @@
-#include<cmath>
+#include <cmath>
 
 void setStyle() {
   gROOT->SetStyle("Plain");
@@ -28,8 +28,8 @@ void Caratteristica1() {
   // Definisco i grafici
   TGraphErrors* silicio = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanio = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
-  TGraphErrors* calibrazione = new TGraphErrors("Calibrazione_corretta.txt", "%lg %lg %lg %lg"); 
-  // bisogna modificare con gli errori in qudratura per l'oscilloscopio
+  TGraphErrors* calibrazione = new TGraphErrors("Calibrazione_corretta.txt", "%lg %lg %lg %lg");
+  // bisogna modificare con gli errori in qudratura per l'oscilloscopio // Fatto
   TGraphErrors* silicioLog = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanioLog = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
 
