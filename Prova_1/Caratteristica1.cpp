@@ -106,7 +106,7 @@ void Caratteristica1() {
   TCanvas* myCanvas5 = new TCanvas("Retta di calibrazione", "canvas 5");
 
   std::vector<TCanvas*> Canvas = {myCanvas1, myCanvas2, myCanvas3, myCanvas4, myCanvas5};
-  for (int i = 0; i < 0; i++) {
+  for (int i = 0; i < 5; i++) {
     Canvas[i]->SetGrid();
   }
 
