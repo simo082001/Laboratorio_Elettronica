@@ -29,11 +29,20 @@ void Caratteristica2() {
   TGraphErrors *corrente_bassa = new TGraphErrors("Dati_ib_100.txt", "%lg %lg %lg %lg");
   TGraphErrors *corrente_alta = new TGraphErrors("Dati_ib_200.txt", "%lg %lg %lg %lg");
 
-corrente_bassa->SetTitle("Caratteristica con corrente 100 uA");
-corrente_alta->SetTitle("Caratteristica con corrente 200 uA");
+  // cosmetica
+  corrente_bassa->SetTitle("Caratteristica con corrente 100 uA");
+  corrente_bassa->SetMarkerStyle(7);
+  corrente_bassa->SetMarkerColor(kBlue);
+  corrente_bassa->SetMarkerSize(6);
+
+  corrente_alta->SetTitle("Caratteristica con corrente 200 uA");
+  corrente_alta->SetMarkerStyle(7);
+  corrente_alta->SetMarkerColor(kBlue);
+  corrente_alta->SetMarkerSize(6);
+
   // Assegno le funzioni di fit
-  TF1 *f1 = new TF1("ib_100", retta, -22.7, -19.72, 2);
-  TF1 *f2 = new TF1("ib_200", retta, -38, -32.7, 2);
+  TF1 *f1 = new TF1("ib_100", retta, -22.6, -19.72, 2);
+  TF1 *f2 = new TF1("ib_200", retta, -38, -33, 2);
 
   TCanvas *myCanvas1 = new TCanvas("Caratteristica con corrente 100 uA", "canvas 1");
   TCanvas *myCanvas2 = new TCanvas("Caratteristica con corrente 200 uA", "canvas 2");
