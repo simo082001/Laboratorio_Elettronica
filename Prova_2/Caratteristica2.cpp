@@ -41,9 +41,18 @@ void Caratteristica2() {
   corrente_alta->SetMarkerSize(6);
 
   // Assegno le funzioni di fit
-  TF1 *f1 = new TF1("ib_100", retta, -22.6, -19.72, 2);
+  TF1 *f1 = new TF1("ib_100", retta, -22.6, -19.7, 2);
   TF1 *f2 = new TF1("ib_200", retta, -38, -33, 2);
 
+  // Cosmetica
+  f1->SetLineWidth(2);
+  f2->SetLineWidth(2);
+  f1->SetParName(0, "Resistenza di uscita");
+  f1->SetParName(1, "Tensione di Early");
+  f2->SetParName(0, "Resistenza di uscita");
+  f2->SetParName(1, "Tensione di Early");
+
+  // Definisco le canvas
   TCanvas *myCanvas1 = new TCanvas("Caratteristica con corrente 100 uA", "canvas 1");
   TCanvas *myCanvas2 = new TCanvas("Caratteristica con corrente 200 uA", "canvas 2");
 
@@ -55,8 +64,11 @@ void Caratteristica2() {
   myCanvas1->SetGrid();
   myCanvas1->cd();
   corrente_bassa->Draw("APE, SAME");
+  f1->DrawF1(-30, -10, "SAME");
+  
 
   myCanvas2->SetGrid();
   myCanvas2->cd();
   corrente_alta->Draw("APE, SAME");
+  f2->DrawF1(-45, -25, "SAME");
 }
