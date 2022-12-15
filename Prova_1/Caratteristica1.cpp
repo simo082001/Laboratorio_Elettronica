@@ -79,7 +79,7 @@ void Caratteristica1() {
   f2->SetLineWidth(1);
   f2->SetNpx(1000000);
 
-  f3->SetLineColor(kRed);
+  f3->SetLineColor(kViolet);
   f3->SetLineStyle(1);
   f3->SetLineWidth(1);
   f3->SetNpx(1000000);
@@ -87,27 +87,27 @@ void Caratteristica1() {
   silicio->GetYaxis()->SetTitleOffset(1);
   silicio->GetXaxis()->SetTitleOffset(1.2);
   silicio->GetYaxis()->SetTitle("Tensione (mV)");
-  silicio->GetXaxis()->SetTitle("Intensita (mA)");
+  silicio->GetXaxis()->SetTitle("Intensità (mA)");
 
   germanio->GetYaxis()->SetTitleOffset(1);
   germanio->GetXaxis()->SetTitleOffset(1.2);
   germanio->GetYaxis()->SetTitle("Tensione (mV)");
-  germanio->GetXaxis()->SetTitle("Intensita (mA)");
+  germanio->GetXaxis()->SetTitle("Intensità (mA)");
 
   silicioLog->GetYaxis()->SetTitleOffset(1);
   silicioLog->GetXaxis()->SetTitleOffset(1.2);
   silicioLog->GetYaxis()->SetTitle("Tensione (mV)");
-  silicioLog->GetXaxis()->SetTitle("Intensita (mA)");
+  silicioLog->GetXaxis()->SetTitle("Intensità (mA)");
 
   germanioLog->GetYaxis()->SetTitleOffset(1);
   germanioLog->GetXaxis()->SetTitleOffset(1.2);
   germanioLog->GetYaxis()->SetTitle("Tensione (mV)");
-  germanioLog->GetXaxis()->SetTitle("Intensita (mA)");
+  germanioLog->GetXaxis()->SetTitle("Intensità (mA)");
 
   calibrazione->GetYaxis()->SetTitleOffset(1);
   calibrazione->GetXaxis()->SetTitleOffset(1.2);
-  calibrazione->GetXaxis()->SetTitle("Tensione (mV)");
-  calibrazione->GetYaxis()->SetTitle("Tensione (mV)");
+  calibrazione->GetXaxis()->SetTitle("Tensione multimetro (mV)");
+  calibrazione->GetYaxis()->SetTitle("Tensione oscilloscopio (mV)");
 
   // Fit dei grafici
   silicio->Fit(f1, "R, C");
