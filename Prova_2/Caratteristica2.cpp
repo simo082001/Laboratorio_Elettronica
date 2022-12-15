@@ -34,11 +34,15 @@ void Caratteristica2() {
   corrente_bassa->SetMarkerStyle(7);
   corrente_bassa->SetMarkerColor(kBlue);
   corrente_bassa->SetMarkerSize(6);
+  corrente_bassa->GetXaxis()->SetTitle("I_E (mA)");
+  corrente_bassa->GetYaxis()->SetTitle("V_E-C (mV)");
 
   corrente_alta->SetTitle("Caratteristica con corrente 200 uA");
   corrente_alta->SetMarkerStyle(7);
   corrente_alta->SetMarkerColor(kBlue);
   corrente_alta->SetMarkerSize(6);
+  corrente_alta->GetXaxis()->SetTitle("I_E (mA)");
+  corrente_alta->GetYaxis()->SetTitle("V_E-C (mV)");
 
   // Assegno le funzioni di fit
   TF1 *f1 = new TF1("ib_100", retta, -22.6, -19.7, 2);
@@ -51,6 +55,7 @@ void Caratteristica2() {
   f1->SetParName(1, "Tensione di Early");
   f2->SetParName(0, "Resistenza di uscita");
   f2->SetParName(1, "Tensione di Early");
+  
 
   // Definisco le canvas
   TCanvas *myCanvas1 = new TCanvas("Caratteristica con corrente 100 uA", "canvas 1");
