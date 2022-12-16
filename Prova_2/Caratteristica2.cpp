@@ -34,19 +34,19 @@ void Caratteristica2() {
   corrente_bassa->SetMarkerStyle(7);
   corrente_bassa->SetMarkerColor(kBlue);
   corrente_bassa->SetMarkerSize(6);
-  corrente_bassa->GetXaxis()->SetTitle("I_E (mA)");
-  corrente_bassa->GetYaxis()->SetTitle("V_E-C (mV)");
+  corrente_bassa->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+  corrente_bassa->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
 
   corrente_alta->SetTitle("Caratteristica con corrente 200 uA");
   corrente_alta->SetMarkerStyle(7);
   corrente_alta->SetMarkerColor(kBlue);
   corrente_alta->SetMarkerSize(6);
-  corrente_alta->GetXaxis()->SetTitle("I_E (mA)");
-  corrente_alta->GetYaxis()->SetTitle("V_E-C (mV)");
+  corrente_alta->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+  corrente_alta->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
 
   // Assegno le funzioni di fit
-  TF1 *f1 = new TF1("ib_100", retta, -22.6, -19.7, 2);
-  TF1 *f2 = new TF1("ib_200", retta, -38, -33, 2);
+  TF1 *f1 = new TF1("ib_100", retta, 19.7, 22.6, 2);
+  TF1 *f2 = new TF1("ib_200", retta, 33, 38, 2);
 
   // Cosmetica
   f1->SetLineWidth(2);
@@ -69,11 +69,11 @@ void Caratteristica2() {
   myCanvas1->SetGrid();
   myCanvas1->cd();
   corrente_bassa->Draw("APE, SAME");
-  f1->DrawF1(-30, -10, "SAME");
+  f1->DrawF1(10, 30, "SAME");
   
 
   myCanvas2->SetGrid();
   myCanvas2->cd();
   corrente_alta->Draw("APE, SAME");
-  f2->DrawF1(-45, -25, "SAME");
+  f2->DrawF1(25, 45, "SAME");
 }
