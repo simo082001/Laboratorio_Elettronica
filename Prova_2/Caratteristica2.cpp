@@ -27,7 +27,14 @@ Double_t retta(Double_t *x, Double_t *par) {
 void Caratteristica2() {
   // Definisco i grafici
   TGraphErrors *corrente_bassa = new TGraphErrors("Dati_ib_100.txt", "%lg %lg %lg %lg");
+  TGraphErrors *corrente_bassa1 = new TGraphErrors("Datiscambiati100.txt", "%lg %lg %lg %lg");
+
   TGraphErrors *corrente_alta = new TGraphErrors("Dati_ib_200.txt", "%lg %lg %lg %lg");
+  TGraphErrors *corrente_alta1 = new TGraphErrors("Datiscambiati200.txt", "%lg %lg %lg %lg");
+
+  TMultiGraph *multigrafico = new TMultiGraph();
+  multigrafico->Add(corrente_bassa, "PL");
+  multigrafico->Add(corrente_alta, "PL");
 
   // cosmetica
   corrente_bassa->SetTitle("Caratteristica con corrente 100 uA");
@@ -39,10 +46,14 @@ void Caratteristica2() {
 
   corrente_alta->SetTitle("Caratteristica con corrente 200 uA");
   corrente_alta->SetMarkerStyle(7);
-  corrente_alta->SetMarkerColor(kBlue);
+  corrente_alta->SetMarkerColor(kGreen);
   corrente_alta->SetMarkerSize(6);
   corrente_alta->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
   corrente_alta->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
+
+  multigrafico->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
+  multigrafico->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+
 
   // Assegno le funzioni di fit
   TF1 *f1 = new TF1("ib_100", retta, 19.7, 22.6, 2);
@@ -60,6 +71,8 @@ void Caratteristica2() {
   // Definisco le canvas
   TCanvas *myCanvas1 = new TCanvas("Caratteristica con corrente 100 uA", "canvas 1");
   TCanvas *myCanvas2 = new TCanvas("Caratteristica con corrente 200 uA", "canvas 2");
+  TCanvas *myCanvas3 = new TCanvas("Multigrafico caratteristiche", "canvas 3");
+
 
   corrente_bassa->Fit(f1, "R, C");
   corrente_alta->Fit(f2, "R, C");
@@ -69,11 +82,15 @@ void Caratteristica2() {
   myCanvas1->SetGrid();
   myCanvas1->cd();
   corrente_bassa->Draw("APE, SAME");
-  f1->DrawF1(10, 30, "SAME");
-  
+  f1->DrawF1(10, 30, "SAME");  
 
   myCanvas2->SetGrid();
   myCanvas2->cd();
   corrente_alta->Draw("APE, SAME");
   f2->DrawF1(25, 45, "SAME");
+
+  myCanvas3->SetGrid();
+  myCanvas3->cd();
+  multigrafico->Draw("A, PLC");
+  myCanvas3->BuildLegend();
 }
