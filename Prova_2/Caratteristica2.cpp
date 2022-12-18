@@ -33,8 +33,8 @@ void Caratteristica2() {
   TGraphErrors *corrente_alta1 = new TGraphErrors("Datiscambiati200.txt", "%lg %lg %lg %lg");
 
   TMultiGraph *multigrafico = new TMultiGraph();
-  multigrafico->Add(corrente_bassa, "PL");
-  multigrafico->Add(corrente_alta, "PL");
+  multigrafico->Add(corrente_bassa1, "PL");
+  multigrafico->Add(corrente_alta1, "PL");
 
   // cosmetica
   corrente_bassa->SetTitle("Caratteristica con corrente 100 uA");
@@ -44,6 +44,15 @@ void Caratteristica2() {
   corrente_bassa->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
   corrente_bassa->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
 
+  corrente_bassa1->SetTitle("Caratteristica con corrente 100 uA");
+  corrente_bassa1->SetMarkerStyle(7);
+  // corrente_bassa1->SetMarkerColor(kBlue);
+  corrente_bassa1->SetMarkerSize(6);
+  corrente_bassa1->SetLineColor(kBlue);
+  corrente_bassa1->GetXaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
+  corrente_bassa1->GetYaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+
+
   corrente_alta->SetTitle("Caratteristica con corrente 200 uA");
   corrente_alta->SetMarkerStyle(7);
   corrente_alta->SetMarkerColor(kGreen);
@@ -51,8 +60,18 @@ void Caratteristica2() {
   corrente_alta->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
   corrente_alta->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
 
-  multigrafico->GetYaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
-  multigrafico->GetXaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+  corrente_alta1->SetTitle("Caratteristica con corrente 200 uA");
+  corrente_alta1->SetMarkerStyle(7);
+  // corrente_alta1->SetMarkerColor(kRed);
+  corrente_alta1->SetMarkerSize(8);
+  corrente_alta1->SetLineColor(kRed);
+  corrente_alta1->GetXaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
+  corrente_alta1->GetYaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+
+
+  multigrafico->GetYaxis()->SetTitle("Corrente di collettore |Ic| (mA)");
+  multigrafico->GetXaxis()->SetTitle("Tensione tra collettore ed emettitore |Vce| (mV)");
+  multigrafico->GetXaxis()->SetTitleOffset(1.2);
 
 
   // Assegno le funzioni di fit
@@ -91,6 +110,6 @@ void Caratteristica2() {
 
   myCanvas3->SetGrid();
   myCanvas3->cd();
-  multigrafico->Draw("A, PLC");
+  multigrafico->Draw("AP");
   myCanvas3->BuildLegend();
 }
