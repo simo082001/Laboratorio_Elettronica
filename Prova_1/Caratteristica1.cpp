@@ -26,6 +26,9 @@ Double_t retta(Double_t* x, Double_t* par) {
 
 void Caratteristica1() {
   // Definisco i grafici
+  TGraphErrors* levrini = new TGraphErrors("Dati_Germanio_corretti", "%lg %lg %lg %lg");
+  TGraphErrors* barelli = new TGraphErrors("Dati_Silicio_corretti", "%lg %lg %lg %lg");
+  TMultiGraph* didattica = new TMultiGraph();
   TGraphErrors* silicio = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanio = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
   TGraphErrors* calibrazione = new TGraphErrors("Calibrazione_corretta.txt", "%lg %lg %lg %lg");
