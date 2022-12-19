@@ -33,8 +33,8 @@ void Caratteristica2() {
   TGraphErrors *corrente_alta1 = new TGraphErrors("Datiscambiati200.txt", "%lg %lg %lg %lg");
 
   TMultiGraph *multigrafico = new TMultiGraph();
-  multigrafico->Add(corrente_bassa1, "PL");
-  multigrafico->Add(corrente_alta1, "PL");
+  multigrafico->Add(corrente_bassa1, "P");
+  multigrafico->Add(corrente_alta1, "P");
 
   // cosmetica
   corrente_bassa->SetTitle("Caratteristica con corrente 100 uA");

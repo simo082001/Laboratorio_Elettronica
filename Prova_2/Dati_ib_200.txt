@@ -37,4 +37,4 @@ Valori di corrente (mA) Valori di tensione(mV) Errori mA  Errori mV
 19.34		            200		               0.31	      8
 13.83		            150		               0.23	      8
 6.48		            100		               0.12	      7
-
+1.34                    50                     0.04       6

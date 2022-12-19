@@ -26,15 +26,18 @@ Double_t retta(Double_t* x, Double_t* par) {
 
 void Caratteristica1() {
   // Definisco i grafici
-  TGraphErrors* levrini = new TGraphErrors("Dati_Germanio_corretti", "%lg %lg %lg %lg");
-  TGraphErrors* barelli = new TGraphErrors("Dati_Silicio_corretti", "%lg %lg %lg %lg");
-  TMultiGraph* didattica = new TMultiGraph();
+  TGraphErrors* levrini = new TGraphErrors("Dati_Germanio_corretti.txt", "%lg %lg %lg %lg");
+  TGraphErrors* barelli = new TGraphErrors("Dati_Silicio_corretti.txt", "%lg %lg %lg %lg");  
   TGraphErrors* silicio = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanio = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
   TGraphErrors* calibrazione = new TGraphErrors("Calibrazione_corretta.txt", "%lg %lg %lg %lg");
-  // bisogna modificare con gli errori in qudratura per l'oscilloscopio // Fatto
   TGraphErrors* silicioLog = new TGraphErrors("Dati_Silicio.txt", "%lg %lg %lg %lg");
   TGraphErrors* germanioLog = new TGraphErrors("Dati_Germanio.txt", "%lg %lg %lg %lg");
+
+  TMultiGraph* didattica = new TMultiGraph();
+
+  didattica->Add(levrini, "P");
+  didattica->Add(barelli, "P");
 
   // Assegno le funzioni di fit
   TF1* f1 = new TF1("silicio", FitFunction, 0, 8, 2);
@@ -71,6 +74,28 @@ void Caratteristica1() {
   calibrazione->SetMarkerStyle(7);
   calibrazione->SetMarkerColor(kBlue);
   calibrazione->SetMarkerSize(4);
+
+  levrini->SetTitle("Caratteristica Germanio");
+  levrini->SetMarkerStyle(7);
+  levrini->SetMarkerSize(6);
+  levrini->SetLineColor(kRed);
+  levrini->GetXaxis()->SetTitle("V (mV)");
+  levrini->GetYaxis()->SetTitle("I (mA)");
+
+  barelli->SetTitle("Caratteristica Silicio");
+  barelli->SetMarkerStyle(7);
+  barelli->SetMarkerSize(6);
+  barelli->SetLineColor(kBlue);
+  barelli->GetXaxis()->SetTitle("V (mV)");
+  barelli->GetYaxis()->SetTitle("I (mA)");
+
+  didattica->GetYaxis()->SetTitle("Corrente (mA)");
+  didattica->GetXaxis()->SetTitle("Tensione (mV)");
+  didattica->GetXaxis()->SetTitleOffset(1.2);
+  didattica->GetYaxis()->SetTitleOffset(0.8);
+
+
+
 
   f1->SetLineColor(kRed);
   f1->SetLineStyle(1);
@@ -125,9 +150,10 @@ void Caratteristica1() {
   TCanvas* myCanvas3 = new TCanvas("Caratteristica germanio", "canvas 3");
   TCanvas* myCanvas4 = new TCanvas("Caratteristica germanio scala logaritmica", "canvas 4");
   TCanvas* myCanvas5 = new TCanvas("Retta di calibrazione", "canvas 5");
+  TCanvas* myCanvas6 = new TCanvas("Multigrafico", "canvas 6");
 
-  std::vector<TCanvas*> Canvas = {myCanvas1, myCanvas2, myCanvas3, myCanvas4, myCanvas5};
-  for (int i = 0; i < 5; i++) {
+  std::vector<TCanvas*> Canvas = {myCanvas1, myCanvas2, myCanvas3, myCanvas4, myCanvas5, myCanvas6};
+  for (int i = 0; i < 6; i++) {
     Canvas[i]->SetGrid();
   }
 
@@ -145,4 +171,7 @@ void Caratteristica1() {
   germanioLog->Draw("APE, SAME");
   myCanvas5->cd();
   calibrazione->Draw("APE, SAME");
+  myCanvas6->cd();
+  didattica->Draw("AP");
+  myCanvas6->BuildLegend();
 }
