@@ -40,8 +40,8 @@ void Caratteristica1() {
   didattica->Add(barelli, "P");
 
   // Assegno le funzioni di fit
-  TF1* f1 = new TF1("silicio", FitFunction, 0, 8, 2);
-  TF1* f2 = new TF1("germanio", FitFunction, 0, 6, 2);
+  TF1* f1 = new TF1("silicio", FitFunction, 0, 3, 2);
+  TF1* f2 = new TF1("germanio", FitFunction, 0, 0.5, 2);
   TF1* f3 = new TF1("retta", retta, 0, 800, 2);
 
 
@@ -161,14 +161,18 @@ void Caratteristica1() {
   gStyle->SetOptFit(111);
   myCanvas1->cd();
   silicio->Draw("APE, SAME");
+  f1->DrawF1(0, 8, "SAME");
   myCanvas2->cd();
   gPad->SetLogx();
   silicioLog->Draw("APE, SAME");
+  f1->DrawF1(0, 8, "SAME");
   myCanvas3->cd();
   germanio->Draw("APE, SAME");
+  f2->DrawF1(0, 8, "SAME");
   myCanvas4->cd();
   gPad->SetLogx();
   germanioLog->Draw("APE, SAME");
+  f2->DrawF1(0, 8, "SAME");
   myCanvas5->cd();
   calibrazione->Draw("APE, SAME");
   myCanvas6->cd();
