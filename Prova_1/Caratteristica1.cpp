@@ -42,7 +42,7 @@ void Caratteristica1() {
   // Assegno le funzioni di fit
   TF1* f1 = new TF1("silicio", FitFunction, 0, 3, 2);
   TF1* f2 = new TF1("germanio", FitFunction, 0, 0.5, 2);
-  TF1* f3 = new TF1("retta", retta, 0, 800, 2);
+  TF1* f3 = new TF1("retta", retta, 0, 750, 2);
 
 
   // Devo settare i parametri iniziali
@@ -115,22 +115,22 @@ void Caratteristica1() {
   silicio->GetYaxis()->SetTitleOffset(1);
   silicio->GetXaxis()->SetTitleOffset(1.2);
   silicio->GetYaxis()->SetTitle("Tensione (mV)");
-  silicio->GetXaxis()->SetTitle("Intensità (mA)");
+  silicio->GetXaxis()->SetTitle("Corrente (mA)");
 
   germanio->GetYaxis()->SetTitleOffset(1);
   germanio->GetXaxis()->SetTitleOffset(1.2);
   germanio->GetYaxis()->SetTitle("Tensione (mV)");
-  germanio->GetXaxis()->SetTitle("Intensità (mA)");
+  germanio->GetXaxis()->SetTitle("Corrente (mA)");
 
   silicioLog->GetYaxis()->SetTitleOffset(1);
   silicioLog->GetXaxis()->SetTitleOffset(1.2);
   silicioLog->GetYaxis()->SetTitle("Tensione (mV)");
-  silicioLog->GetXaxis()->SetTitle("Intensità (mA)");
+  silicioLog->GetXaxis()->SetTitle("Corrente (mA)");
 
   germanioLog->GetYaxis()->SetTitleOffset(1);
   germanioLog->GetXaxis()->SetTitleOffset(1.2);
   germanioLog->GetYaxis()->SetTitle("Tensione (mV)");
-  germanioLog->GetXaxis()->SetTitle("Intensità (mA)");
+  germanioLog->GetXaxis()->SetTitle("Corrente (mA)");
 
   calibrazione->GetYaxis()->SetTitleOffset(1);
   calibrazione->GetXaxis()->SetTitleOffset(1.2);
@@ -138,11 +138,22 @@ void Caratteristica1() {
   calibrazione->GetYaxis()->SetTitle("Tensione oscilloscopio (mV)");
 
   // Fit dei grafici
+  f1->SetParName(0, "a");
+  f2->SetParName(0, "a");
+  f1->SetParName(1, "b");
+  f2->SetParName(1, "b");
   silicio->Fit(f1, "R, C");
-  germanio->Fit(f2, "R, C");
+  TFitResultPtr r = germanio->Fit(f2, "S, R");
+  r->Print("V");
+  //germanio->Fit(f2, "R, C");
+  
+  //f3->SetParLimits(0, 1, 1.01);
   calibrazione->Fit(f3, "R");
+  
   silicioLog->Fit(f1, "R");
   germanioLog->Fit(f2, "R");
+
+  
 
   // Volendo c'è da creare le varie Canva
   TCanvas* myCanvas1 = new TCanvas("Caratteristica silicio", "canvas 1");
@@ -175,6 +186,7 @@ void Caratteristica1() {
   f2->DrawF1(0, 8, "SAME");
   myCanvas5->cd();
   calibrazione->Draw("APE, SAME");
+  f3->DrawF1(0, 900, "SAME");
   myCanvas6->cd();
   didattica->Draw("AP");
   myCanvas6->BuildLegend();
